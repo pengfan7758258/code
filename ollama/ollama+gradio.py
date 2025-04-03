@@ -6,7 +6,7 @@ gradio
 
 import os 
 import gradio as gr
-from openai import OpenAI
+from openai import OpenAI   
 
 # 配置openai client
 client = OpenAI(
