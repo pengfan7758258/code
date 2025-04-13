@@ -1,28 +1,47 @@
-"""
-以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [start_i, end_i] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。
-
- 
-
-示例 1：
-
-输入：intervals = [[1,3],[2,6],[8,10],[15,18]]
-输出：[[1,6],[8,10],[15,18]]
-解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].
-示例 2：
-
-输入：intervals = [[1,4],[4,5]]
-输出：[[1,5]]
-解释：区间 [1,4] 和 [4,5] 可被视为重叠区间。
-"""
+import asyncio
+import time
 
 
-def merge(intervals):
-    # 重排序
-    intervals = sorted(intervals, key=lambda x: x[0])
-    new_intervals = []
-    ind = 0
-    while True:
-        pre_1, pre_2 = intervals[ind]
-        last_1, last_2 = intervals[ind+1]
-        
+# async def say_after(delay, what):
+#     await asyncio.sleep(delay)
+#     print(what)
 
+# async def main():
+#     print(f"started at {time.strftime('%X')}")
+#     await say_after(1,'hello')
+#     await say_after(2,'world')
+#     print(f"finished at {time.strftime('%X')}")
+
+# asyncio.run(main())
+
+
+async def say_after(delay, what):
+    print(f"start: {what}, number of tasks: 1" )
+    await asyncio.sleep(delay)
+    print(f"end: {what}")
+
+async def main():
+    # print(asyncio.tasks.all_tasks())
+    # task1 = asyncio.create_task(
+    #     say_after(1,'hello')
+    # )
+
+    # task2 = asyncio.create_task(
+    #     say_after(2,'world')
+    # )
+
+    print(f"started at {time.strftime('%X')}")
+    # print(asyncio.tasks.all_tasks())
+    # await task2
+    # await task1
+
+    await asyncio.create_task(
+        say_after(1,'hello')
+    )
+    await asyncio.create_task(
+        say_after(2,'world')
+    )
+    
+    print(f"finished at {time.strftime('%X')}")
+
+asyncio.run(main())
